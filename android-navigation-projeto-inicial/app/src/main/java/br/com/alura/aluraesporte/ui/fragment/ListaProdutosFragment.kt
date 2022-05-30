@@ -8,6 +8,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import br.com.alura.aluraesporte.R
 import br.com.alura.aluraesporte.ui.recyclerview.adapter.ProdutosAdapter
+import br.com.alura.aluraesporte.ui.viewmodel.ComponentesVisuais
 import br.com.alura.aluraesporte.ui.viewmodel.EstadoAppViewModel
 import br.com.alura.aluraesporte.ui.viewmodel.ProdutosViewModel
 import kotlinx.android.synthetic.main.lista_produtos.*
@@ -18,7 +19,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 class ListaProdutosFragment : BaseFragment() {
 
     private val viewModel: ProdutosViewModel by viewModel()
-    private val estadoAppViewModel: EstadoAppViewModel by sharedViewModel()
+    private val estadoAppViewModel: EstadoAppViewModel by sharedViewModel()  //pegar a instancia compartilhada (shareViewModel)
     private val adapter: ProdutosAdapter by inject()
     private val controlador by lazy {
         findNavController()
@@ -50,7 +51,7 @@ class ListaProdutosFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        estadoAppViewModel.temAppBar = true
+        estadoAppViewModel.temComponentes = ComponentesVisuais(appBar = true, bottomNavigation = true)
         configuraRecyclerView()
     }
 
